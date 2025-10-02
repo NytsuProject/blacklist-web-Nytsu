@@ -1,56 +1,61 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background: #f4f4f4;
-}
-
-h1 {
-  text-align: center;
+    font-family: Arial, sans-serif;
+    background: #1e1e2f;
+    color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 form {
-  margin-bottom: 20px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
+    background: #2c2c44;
+    padding: 25px;
+    border-radius: 12px;
+    width: 320px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-form input, form button {
-  padding: 10px;
-  font-size: 14px;
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffd369;
 }
 
-#search {
-  display: block;
-  margin: 0 auto 20px auto;
-  padding: 10px;
-  width: 250px;
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
 }
 
-table, th, td {
-  border: 1px solid #ddd;
-}
-
-th, td {
-  padding: 12px;
-  text-align: center;
+select {
+    cursor: pointer;
 }
 
 button {
-  cursor: pointer;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
+    width: 100%;
+    padding: 12px;
+    background: #ffd369;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
 button:hover {
-  background: #0056b3;
+    background: #ffb347;
 }
+
+
