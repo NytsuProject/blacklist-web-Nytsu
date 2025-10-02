@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blacklist</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Jugadores</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Blacklist</h1>
+    <form action="/guardar" method="post">
+        <h2>Registro de Jugador</h2>
 
-  <form id="blacklistForm">
-    <input type="text" id="nombre" placeholder="Nombre" required>
-    <input type="text" id="razon" placeholder="Razón" required>
-    <input type="text" id="rol" placeholder="Rol" required>
-    <input type="text" id="clase" placeholder="Clase" required>
-    <button type="submit">Agregar</button>
-  </form>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
 
-  <input type="text" id="search" placeholder="Buscar por nombre...">
+        <label for="rol">Rol:</label>
+        <select id="rol" name="rol" required>
+            <option value="">-- Selecciona un Rol --</option>
+            <option value="Tanque">Tanque</option>
+            <option value="Healer">Healer</option>
+            <option value="DPS">DPS</option>
+        </select>
 
-  <table id="blacklistTable">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Razón</th>
-        <th>Rol</th>
-        <th>Clase</th>
-        <th>Acción</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+        <label for="clase">Clase:</label>
+        <select id="clase" name="clase" required>
+            <option value="">-- Selecciona una Clase --</option>
+            <option value="Guerrero">Guerrero</option>
+            <option value="Paladin">Paladín</option>
+            <option value="Sacerdote">Sacerdote</option>
+            <option value="Picaro">Pícaro</option>
+            <option value="Chaman">Chamán</option>
+            <option value="DK">DK</option>
+            <option value="DH">DH</option>
+            <option value="Cazador">Cazador</option>
+            <option value="Brujo">Brujo</option>
+            <option value="Evoker">Evoker</option>
+            <option value="Monje">Monje</option>
+            <option value="Druida">Druida</option>
+            <option value="Mago">Mago</option>
+        </select>
 
-  <!-- Librería Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- Tu JS -->
-  <script src="script.js"></script>
+        <button type="submit">Guardar</button>
+    </form>
 </body>
 </html>
 
