@@ -1,12 +1,17 @@
+// ⚡ Configura tus credenciales de Supabase aquí
+const SUPABASE_URL = "https://kjncexypjqzwjtplboua.supabase.co"; 
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbmNleHlwanF6d2p0cGxib3VhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkzNzU0NDcsImV4cCI6MjA3NDk1MTQ0N30.x1qNlo4Nfwa-jrAUAdIVmkZeIOjKVCbDGQ78et8zQQo"; 
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 const form = document.getElementById("blacklistForm");
 const tableBody = document.querySelector("#blacklistTable tbody");
 const searchInput = document.getElementById("search");
 
-// Cargar datos de localStorage al iniciar
+// Cargar datos al inicio
 document.addEventListener("DOMContentLoaded", loadData);
 
-// Agregar a la tabla
-form.addEventListener("submit", (e) => {
+// Agregar registro
+form.addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const nombre = document.getElementById("nombre").value;
@@ -14,60 +19,68 @@ form.addEventListener("submit", (e) => {
   const rol = document.getElementById("rol").value;
   const clase = document.getElementById("clase").value;
 
-  const entry = { nombre, razon, rol, clase };
-  saveToStorage(entry);
-  addRow(entry);
+  const { data, error } = await supabaseClient
+    .from("blacklist")
+    .insert([{ nombre, razon, rol, clase }])
+    .select();
 
-  form.reset();
+  if (error) {
+    alert("❌ Error guardando en la base: " + error.message);
+  } else {
+    addRow(data[0]);
+    form.reset();
+  }
 });
 
-// Buscar en la tabla
-searchInput.addEventListener("keyup", () => {
-  const filter = searchInput.value.toLowerCase();
-  const rows = tableBody.querySelectorAll("tr");
+// Cargar datos de Supabase
+async function loadData() {
+  const { data, error } = await supabaseClient
+    .from("blacklist")
+    .select("*");
 
-  rows.forEach(row => {
-    const nombre = row.cells[0].textContent.toLowerCase();
-    row.style.display = nombre.includes(filter) ? "" : "none";
-  });
-});
+  if (error) {
+    console.error("Error cargando datos:", error);
+    return;
+  }
 
-// Función para agregar fila a la tabla
-function addRow(entry) {
+  tableBody.innerHTML = "";
+  data.forEach(row => addRow(row));
+}
+
+// Agregar fila en la tabla
+function addRow(item) {
   const row = document.createElement("tr");
   row.innerHTML = `
-    <td>${entry.nombre}</td>
-    <td>${entry.razon}</td>
-    <td>${entry.rol}</td>
-    <td>${entry.clase}</td>
-    <td><button class="delete">Eliminar</button></td>
+    <td>${item.nombre}</td>
+    <td>${item.razon}</td>
+    <td>${item.rol}</td>
+    <td>${item.clase}</td>
+    <td><button onclick="deleteRow('${item.id}', this)">Eliminar</button></td>
   `;
-
-  // Evento eliminar
-  row.querySelector(".delete").addEventListener("click", () => {
-    removeFromStorage(entry.nombre);
-    row.remove();
-  });
-
   tableBody.appendChild(row);
 }
 
-// Guardar en localStorage
-function saveToStorage(entry) {
-  let data = JSON.parse(localStorage.getItem("blacklist")) || [];
-  data.push(entry);
-  localStorage.setItem("blacklist", JSON.stringify(data));
+// Eliminar registro
+async function deleteRow(id, btn) {
+  const { error } = await supabaseClient
+    .from("blacklist")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    alert("❌ Error eliminando: " + error.message);
+  } else {
+    btn.closest("tr").remove();
+  }
 }
 
-// Cargar datos
-function loadData() {
-  let data = JSON.parse(localStorage.getItem("blacklist")) || [];
-  data.forEach(entry => addRow(entry));
-}
+// Buscar en la tabla
+searchInput.addEventListener("input", function() {
+  const filter = searchInput.value.toLowerCase();
+  const rows = tableBody.getElementsByTagName("tr");
+  for (let row of rows) {
+    const nombre = row.cells[0].textContent.toLowerCase();
+    row.style.display = nombre.includes(filter) ? "" : "none";
+  }
+});
 
-// Eliminar de localStorage
-function removeFromStorage(nombre) {
-  let data = JSON.parse(localStorage.getItem("blacklist")) || [];
-  data = data.filter(entry => entry.nombre !== nombre);
-  localStorage.setItem("blacklist", JSON.stringify(data));
-}
