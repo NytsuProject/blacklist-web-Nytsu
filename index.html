@@ -1,46 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Jugadores</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blacklist WoW</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- CDN de Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <form action="/guardar" method="post">
-        <h2>Registro de Jugador</h2>
+  <h1>Blacklist WoW</h1>
 
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
+  <form id="blacklistForm">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
 
-        <label for="rol">Rol:</label>
-        <select id="rol" name="rol" required>
-            <option value="">-- Selecciona un Rol --</option>
-            <option value="Tanque">Tanque</option>
-            <option value="Healer">Healer</option>
-            <option value="DPS">DPS</option>
-        </select>
+    <label for="razon">Razón:</label>
+    <input type="text" id="razon" name="razon" required>
 
-        <label for="clase">Clase:</label>
-        <select id="clase" name="clase" required>
-            <option value="">-- Selecciona una Clase --</option>
-            <option value="Guerrero">Guerrero</option>
-            <option value="Paladin">Paladín</option>
-            <option value="Sacerdote">Sacerdote</option>
-            <option value="Picaro">Pícaro</option>
-            <option value="Chaman">Chamán</option>
-            <option value="DK">DK</option>
-            <option value="DH">DH</option>
-            <option value="Cazador">Cazador</option>
-            <option value="Brujo">Brujo</option>
-            <option value="Evoker">Evoker</option>
-            <option value="Monje">Monje</option>
-            <option value="Druida">Druida</option>
-            <option value="Mago">Mago</option>
-        </select>
+    <label for="rol">Rol:</label>
+    <select id="rol" name="rol" required>
+      <option value="">-- Selecciona un Rol --</option>
+      <option value="Tanque">Tanque</option>
+      <option value="Healer">Healer</option>
+      <option value="DPS">DPS</option>
+    </select>
 
-        <button type="submit">Guardar</button>
-    </form>
+    <label for="clase">Clase:</label>
+    <select id="clase" name="clase" required>
+      <option value="">-- Selecciona una Clase --</option>
+      <option value="Guerrero">Guerrero</option>
+      <option value="Paladin">Paladín</option>
+      <option value="Sacerdote">Sacerdote</option>
+      <option value="Picaro">Pícaro</option>
+      <option value="Chaman">Chamán</option>
+      <option value="DK">DK</option>
+      <option value="DH">DH</option>
+      <option value="Cazador">Cazador</option>
+      <option value="Brujo">Brujo</option>
+      <option value="Evoker">Evoker</option>
+      <option value="Monje">Monje</option>
+      <option value="Druida">Druida</option>
+      <option value="Mago">Mago</option>
+    </select>
+
+    <button type="submit">Agregar</button>
+  </form>
+
+  <div class="search-container">
+    <label for="search">Buscar por nombre:</label>
+    <input type="text" id="search" placeholder="Escribe un nombre...">
+  </div>
+
+  <table id="blacklistTable">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Razón</th>
+        <th>Rol</th>
+        <th>Clase</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="script.js"></script>
 </body>
 </html>
 
