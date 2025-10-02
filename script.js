@@ -84,4 +84,23 @@ searchInput.addEventListener("input", function() {
   }
 });
 
+let contadorPipe = 0;
+
+function aumentarContador() {
+  contadorPipe++;
+  document.getElementById("contadorNumero").textContent = contadorPipe;
+}
+
+function disminuirContador() {
+  contadorPipe--;
+  document.getElementById("contadorNumero").textContent = contadorPipe;
+}
+
+function resetearContador() {
+  contadorPipe = 0;
+  document.getElementById("contadorNumero").textContent = contadorPipe;
+}
+
+
+
 
