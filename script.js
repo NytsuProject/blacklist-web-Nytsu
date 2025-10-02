@@ -1,4 +1,4 @@
-// ⚡ Configura tus credenciales de Supabase aquí
+
 const SUPABASE_URL = "https://kjncexypjqzwjtplboua.supabase.co"; 
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqbmNleHlwanF6d2p0cGxib3VhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkzNzU0NDcsImV4cCI6MjA3NDk1MTQ0N30.x1qNlo4Nfwa-jrAUAdIVmkZeIOjKVCbDGQ78et8zQQo"; 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -7,10 +7,10 @@ const form = document.getElementById("blacklistForm");
 const tableBody = document.querySelector("#blacklistTable tbody");
 const searchInput = document.getElementById("search");
 
-// Cargar datos al inicio
+
 document.addEventListener("DOMContentLoaded", loadData);
 
-// Agregar registro
+
 form.addEventListener("submit", async function(e) {
   e.preventDefault();
 
@@ -32,7 +32,7 @@ form.addEventListener("submit", async function(e) {
   }
 });
 
-// Cargar datos de Supabase
+
 async function loadData() {
   const { data, error } = await supabaseClient
     .from("blacklist")
@@ -47,7 +47,7 @@ async function loadData() {
   data.forEach(row => addRow(row));
 }
 
-// Agregar fila en la tabla
+
 function addRow(item) {
   const row = document.createElement("tr");
   row.innerHTML = `
@@ -60,7 +60,7 @@ function addRow(item) {
   tableBody.appendChild(row);
 }
 
-// Eliminar registro
+
 async function deleteRow(id, btn) {
   const { error } = await supabaseClient
     .from("blacklist")
@@ -74,7 +74,7 @@ async function deleteRow(id, btn) {
   }
 }
 
-// Buscar en la tabla
+
 searchInput.addEventListener("input", function() {
   const filter = searchInput.value.toLowerCase();
   const rows = tableBody.getElementsByTagName("tr");
@@ -83,4 +83,5 @@ searchInput.addEventListener("input", function() {
     row.style.display = nombre.includes(filter) ? "" : "none";
   }
 });
+
 
