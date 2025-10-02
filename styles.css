@@ -1,0 +1,49 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #f4f4f4;
+}
+h1 {
+  text-align: center;
+}
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+input, button {
+  padding: 8px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+th {
+  background: #333;
+  color: #fff;
+}
+#search {
+  margin: 10px auto;
+  display: block;
+  padding: 8px;
+  width: 50%;
+}
+button.delete {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button.delete:hover {
+  background: #c0392b;
+}

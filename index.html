@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Blacklist</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Blacklist</h1>
+
+  <!-- Formulario -->
+  <form id="blacklistForm">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="text" id="razon" placeholder="Razón" required>
+    <input type="text" id="rol" placeholder="Rol" required>
+    <input type="text" id="clase" placeholder="Clase" required>
+    <button type="submit">Agregar</button>
+  </form>
+
+  <!-- Buscador -->
+  <input type="text" id="search" placeholder="Buscar por nombre...">
+
+  <!-- Tabla -->
+  <table id="blacklistTable">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Razón</th>
+        <th>Rol</th>
+        <th>Clase</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
