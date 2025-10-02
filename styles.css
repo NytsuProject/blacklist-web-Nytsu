@@ -3,47 +3,54 @@ body {
   margin: 20px;
   background: #f4f4f4;
 }
+
 h1 {
   text-align: center;
 }
+
 form {
+  margin-bottom: 20px;
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
   justify-content: center;
 }
-input, button {
-  padding: 8px;
+
+form input, form button {
+  padding: 10px;
+  font-size: 14px;
 }
+
+#search {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 10px;
+  width: 250px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  background: #fff;
+  background: white;
 }
-th, td {
+
+table, th, td {
   border: 1px solid #ddd;
-  padding: 8px;
+}
+
+th, td {
+  padding: 12px;
   text-align: center;
 }
-th {
-  background: #333;
-  color: #fff;
-}
-#search {
-  margin: 10px auto;
-  display: block;
-  padding: 8px;
-  width: 50%;
-}
-button.delete {
-  background: #e74c3c;
+
+button {
+  cursor: pointer;
+  background: #007bff;
   color: white;
   border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
+  border-radius: 4px;
 }
-button.delete:hover {
-  background: #c0392b;
+
+button:hover {
+  background: #0056b3;
 }
